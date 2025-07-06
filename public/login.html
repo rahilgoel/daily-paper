@@ -5,10 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login</title>
   <link rel="stylesheet" href="styles.css" />
+
+  <style>
+  .login-form {
+    padding: 12px 16px; 
+  }
+  .login-form input,
+ .login-form button {
+   width: 100%;
+   padding: 12px 16px;
+   margin: 10px 0;
+   border-radius: 8px;
+   font-size: 16px;
+   box-sizing: border-box;
+ }
+ 
+ .login-form input {
+   border: 1px solid #ccc;
+ }
+ 
+ .login-form button {
+   background-color: black;
+   color: white;
+   border: none;
+   cursor: pointer;
+ }
+ 
+ .login-form button:hover {
+   background-color: #ad1457;
+ }
+ 
+   </style>
 </head>
+
+
 <body>
   <section class="login-form">
-    <h2>Sign In or Register</h2>
+    <h2>Sign In</h2>
     <input type="email" id="email" placeholder="Email" />
     <input type="password" id="password" placeholder="Password" />
     <button id="loginBtn">Continue</button>

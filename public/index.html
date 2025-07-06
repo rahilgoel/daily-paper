@@ -3,19 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your News</title>
+  <title>Daily Paper</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <section class="landing">
-    <h1>Your News. Your Way. Every Morning.</h1>
-    <button onclick="goToLogin()">Continue</button>
+  <main class="main-content">
+  <section class="hero">
+    <h1 class="fade-in">Your News.<br>Your Way.<br>Every Morning.</h1>
+    <p class="fade-in delay-1">Stay informed with a personalized newsletter curated just for you.</p>
   </section>
+  <div class="auth-buttons">
+    <button onclick="window.location.href='login.html'" class="auth-btn">Login</button>
+    <button onclick="window.location.href='register.html'" class="auth-btn-signup">Sign Up FREE</button>
+  </div>
+  <script src="animations.js"></script>
+</main>  
 
-  <script>
-    function goToLogin() {
-      window.location.href = "register.html";
-    }
-  </script>
+<footer class="footer">
+  <!-- Privacy Footer -->
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="contact.html">Contact</a>
+    </p>
+  </footer>
+
+  </body>
+  </html>
+
 </body>
 </html>
