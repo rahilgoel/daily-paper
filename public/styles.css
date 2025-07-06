@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+  }
+
+  section {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  h1, h2 {
+    color: #2c3e50;
+  }
+
+  input[type="email"], input[type="text"] {
+    padding: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+
+  button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .preview-cards, .topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .card, .topics button {
+    background-color: #ecf0f1;
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .topics button:hover, button:hover {
+    background-color: #0056b3;
+    color: #fff;
+  }
+
+  .how-it-works p {
+    margin: 5px 0;
+    font-style: italic;
+  }
+
+  .sample-news p {
+    margin: 4px 0;
+  }
+
+  .confirmation {
+    text-align: center;
+  }

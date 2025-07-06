@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Topics</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="preferences">
+    <h2>Enter Up to 5 Topics You’re Interested In</h2>
+    <input type="text" placeholder="Topic 1" id="topic1">
+    <input type="text" placeholder="Topic 2" id="topic2">
+    <input type="text" placeholder="Topic 3" id="topic3">
+    <input type="text" placeholder="Topic 4" id="topic4">
+    <input type="text" placeholder="Topic 5" id="topic5">
+    <button id="submitTopics">Save Topics</button>
+  </section>
+
+  <script type="module">
+    import { auth, db } from './firebase.js';
+    import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js';
+    import { doc, setDoc } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js';
+
+    document.getElementById('submitTopics').addEventListener('click', async () => {
+      const topics = [
+        document.getElementById('topic1').value,
+        document.getElementById('topic2').value,
+        document.getElementById('topic3').value,
+        document.getElementById('topic4').value,
+        document.getElementById('topic5').value
+      ].filter(topic => topic.trim() !== '');
+
+      if (topics.length === 0) {
+        alert('Please enter at least one topic.');
+        return;
+      }
+
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          const userDoc = doc(db, 'users', user.uid);
+          await setDoc(userDoc, { topics: topics }, { merge: true });
+          alert('Topics saved successfully!');
+          window.location.href = 'success.html';
+        } else {
+          alert('You must be logged in to save topics.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
