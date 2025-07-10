@@ -20,7 +20,11 @@ const emailHTML = fs.readFileSync(htmlPath, 'utf8');
 
 dotenv.config();
 
-const uid = 'VdHF2qbxHIRFLZIQLTkMoCqX9Es1';
+const uids = [
+  'VdHF2qbxHIRFLZIQLTkMoCqX9Es1', // your original user
+  'NEW_USER_UID_HERE'            // second user UID from Firebase Auth
+];
+
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -52,44 +56,41 @@ return response.choices[0].message.content.trim();
 //   }
 
 async function sendNewsletter() {
-  //  Get the user's auth record
-  const userRecord = await authAdmin.getUser(uid);
-  const recipientEmail = userRecord.email;
+  for (const uid of uids) {
+    try {
+      // 1. Get user email from Firebase Auth
+      const userRecord = await authAdmin.getUser(uid);
+      const recipientEmail = userRecord.email;
 
-  // Get the topics from Firestore
-  const userRef = doc(db, 'users', uid);
-  const userSnap = await getDoc(userRef);
-  const topics = userSnap.exists() ? userSnap.data().topics || [] : [];
+      // 2. Get topics from Firestore
+      const userRef = doc(db, 'users', uid);
+      const userSnap = await getDoc(userRef);
+      const topics = userSnap.exists() ? userSnap.data().topics || [] : [];
 
-  // // Generate HTML content
-  // const emailHTML = generateEmailHTML(
-  //   // await Promise.all(
-  //     getDailyGreeting()
-  //     // topics.map(async (topic) => ({
-  //     //   topic,
-  //     //   summary: await getTopicSummary(topic),
-  //     // }))
-  //   // )
-  // );
-  // emailHTML = sample_newsletter.html
+      // 3. Compose newsletter with optional summaries per topic
+      // (Using static template for now; can be extended to dynamic summaries)
+      // const emailHTML = generateEmailHTML(...)
 
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.GMAIL_USER,
+          pass: process.env.GMAIL_PASS
+        }
+      });
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS
+      const info = await transporter.sendMail({
+        from: `"Daily Paper" <${process.env.GMAIL_USER}>`,
+        to: recipientEmail,
+        subject: '🗞️ Your Personalized Daily Paper',
+        html: emailHTML // optionally make dynamic per user
+      });
+
+      console.log(`✅ Sent to ${recipientEmail}: ${info.messageId}`);
+    } catch (err) {
+      console.error(`❌ Error sending to UID ${uid}:`, err.message);
     }
-  });
-
-  const info = await transporter.sendMail({
-    from: `"Daily Paper" <${process.env.GMAIL_USER}>`,
-    to: recipientEmail,
-    subject: '🗞️ Your Personalized Daily Paper',
-    html: emailHTML
-  });
-
-  console.log(`✅ Sent to ${recipientEmail}: ${info.messageId}`);
+  }
 }
 
 sendNewsletter().catch(console.error);
