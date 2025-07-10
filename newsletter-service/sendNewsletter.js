@@ -22,7 +22,7 @@ dotenv.config();
 
 const uids = [
   'VdHF2qbxHIRFLZIQLTkMoCqX9Es1', // your original user
-  'NEW_USER_UID_HERE'            // second user UID from Firebase Auth
+  'fC8Ohk4TTCdVk8v8aqBs4HWzYCt1'            // second user UID from Firebase Auth
 ];
 
 
