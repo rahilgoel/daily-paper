@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>First Light</title>
+ <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .header {
+      background: linear-gradient(to right, #335CFF, #6B5CFF);
+      color: white;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .meta {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .meta i {
+      margin-right: 5px;
+    }
+
+    .tag {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 12px;
+    }
+
+    .icon {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+  </style>
+
+</head>
+<body>
+ 
+<div class="container">
+  <header style="padding: 32px 0 18px 0; text-align: center;">
+    <h1 style="font-size:2.2rem; font-weight:700; margin:0; color:#23272f; letter-spacing:-1px;">First Light</h1>
+    <div style="font-size:1.1rem; color:#64748b; margin-top:6px;">Your Daily Briefing &bull; {{date}}</div>
+  </header>
+
+  <main>
+    <!--WEATHER_SECTION-->
+    <hr class="divider" />
+    <!--FINANCE_SECTION-->
+    <hr class="divider" />
+    <!--WORLD_SECTION-->
+    <hr class="divider" />
+    <!--TECH_SECTION-->
+    <hr class="divider" />
+    <!--HEALTH_SECTION-->
+    <hr class="divider" />
+    <!--SPORTS_SECTION-->
+  </main>
+
+  <footer style="margin-top:32px; text-align:center; background:#f8fafc; border-top:1px solid #e4eaf1; padding:18px 0 0 0; border-bottom-left-radius:12px; border-bottom-right-radius:12px;">
+    <div class="preview-note">
+      This is a preview of your personalized newsletter.<br>
+      Delivered daily at 7:00 AM in your timezone.
+    </div>
+    <a class="subscribe-btn" href="#" style="margin-top:18px;">Subscribe to Newsletter</a>
+  </footer>
+</div>
+</body>
+</html>
